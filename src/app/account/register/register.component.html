@@ -1,1 +1,178 @@
-<p>register works!</p>
+<div class="row">
+        <div class="content col-lg-3"></div>
+<div class="content col-lg-6">
+<div class="card">
+    <div class="card-header">
+        <span class="h4">Account details</span>
+        <p class="text-muted">You will receive an email notification to confirm this action in
+            order to completed changes.</p>
+    </div>
+    <div class="card-body">
+        <form id="form1" [formGroup]="registerForm" class="form-validate" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" 
+                    placeholder="Enter username" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }">
+                    <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                        <div *ngIf="f.userName.errors.required">Username is required</div>
+                        <div *ngIf="f.userName.errors.minlength">Username should be minimum of 4 characters</div>
+                        <div *ngIf="f.userName.errors.maxlength">Username should be maximum of 10 characters</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter your email"
+                    formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="password">Password</label>
+                    <div class="input-group show-hide-password">
+                        <input class="form-control" name="password" placeholder="Enter password" type="password"
+                            formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="icon-eye-off" aria-hidden="true"
+                                    style="cursor: pointer;"></i></span>
+                        </div>
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.pattern">Password should contain atleast 1 Uppercase, 1 Lowercase, 1 Digit</div>
+                            <div *ngIf="f.password.errors.minlength">Password should be of minimum 6 characters</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="password2">Confirm Password</label>
+                    <div class="input-group show-hide-password">
+                        <input class="form-control" name="password2" placeholder="Enter password" type="password"
+                        formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                        <div class="input-group-append">
+                            <span class="input-group-text"> <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer;"></i>
+                            </span>
+                                   
+                        </div>
+                        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.confirmPassword.errors.required">Password is required</div>
+                            <div *ngIf="f.confirmPassword.errors.MustMatch">Passwords must match</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" placeholder="Enter your Name"
+                    formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                            
+                        </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" placeholder="Enter your Surname"
+                    formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                            
+                        </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" name="gender" required="">
+                        <option value="">Select your gender</option>
+                        <option>Female</option>
+                        <option>Male</option>
+                        <option>Rather not say</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="gender">Date of Birth</label>
+                    <input class="form-control" type="date" name="dateofbirth" required="">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="telephone">Telephone</label>
+                    <input class="form-control" type="tel" name="telephone" placeholder="Enter your Telephone number"
+                        required="">
+                </div>
+            </div>
+            <!-- <div class="h5 mb-4">Mailing Address</div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" name="address" placeholder="Enter your Street Address"
+                        required="">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="address2">Address 2</label>
+                    <input type="text" class="form-control" name="address2"
+                        placeholder="Enter your Apartment, studio, or floor" required="">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" name="city" placeholder="Enter your City" required="">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Zip Code:</label>
+                    <input type="number" class="form-control" name="zip" placeholder="Enter Zip Code" required="">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="state">State</label>
+                    <select name="state" class="form-control" required="">
+                        <option value="">Australia</option>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="country">Country</label>
+                    <select name="country" class="form-control" required="">
+                        <option value="">United States</option>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                </div>
+            </div> -->
+            <div class="form-group mb-1 mt-5">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="reminders" id="reminders" class="custom-control-input" value="1"
+                        required="">
+                    <label class="custom-control-label" for="reminders">Send me occasional
+                        reminders
+                        about these settings</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="terms_conditions" id="terms_conditions" class="custom-control-input"
+                        value="1" required="">
+                    <label class="custom-control-label" for="terms_conditions">By checking
+                        this
+                        option, you agree to acceot with the <a href="#">Terms and
+                            Conditions</a>.</label>
+                </div>
+            </div>
+            <button type="submit" class="btn m-t-30 mt-3">Submit</button>
+        </form>
+    </div>
+</div>
+</div>
+<div class="content col-lg-3"></div>
+</div>
